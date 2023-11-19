@@ -5,10 +5,14 @@ import java.util.Objects;
 public class Employee {
     private final String firstName;
     private final String lastName;
+    private final int salary;
+    private final int department;
 
-    public Employee(String firstName, String lastName) {
+    public Employee(String firstName, String lastName, int salary, int department) {
         this.firstName = firstName;
         this.lastName = lastName;
+        this.salary = salary;
+        this.department = department;
     }
 
     public String getFirstName() {
@@ -18,18 +22,13 @@ public class Employee {
     public String getLastName() {
         return lastName;
     }
-/*
-    public String getFullName() {
-        return firstName + lastName;
+
+    public int getSalary() {
+        return salary;
     }
 
- */
-    @Override
-    public String toString() {
-        return "Employee{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                '}';
+    public int getDepartment() {
+        return department;
     }
 
     @Override
@@ -37,11 +36,21 @@ public class Employee {
         if (this == object) return true;
         if (object == null || getClass() != object.getClass()) return false;
         Employee employee = (Employee) object;
-        return Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
+        return salary == employee.salary && department == employee.department && Objects.equals(firstName, employee.firstName) && Objects.equals(lastName, employee.lastName);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(firstName, lastName);
+        return Objects.hash(firstName, lastName, salary, department);
+    }
+
+    @Override
+    public String toString() {
+        return "Employee{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", salary=" + salary +
+                ", department=" + department +
+                '}';
     }
 }

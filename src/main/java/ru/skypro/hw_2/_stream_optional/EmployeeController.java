@@ -4,7 +4,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import ru.skypro.Collections_2._Implementations.services.EmployeeService;
+import ru.skypro.hw_2._stream_optional.services.EmployeeService;
 
 import java.util.Map;
 
@@ -20,9 +20,11 @@ public class EmployeeController {
     @GetMapping("add")
     public Employee add(
             @RequestParam("firstName") String firstName,
-            @RequestParam("lastName") String lastName
+            @RequestParam("lastName") String lastName,
+            @RequestParam("salary") Integer salary,
+            @RequestParam("department") Integer department
     ) {
-        return employeeService.add(firstName, lastName);
+        return employeeService.add(firstName, lastName, salary, department);
     }
     @GetMapping("remove")
     public Employee remove(
