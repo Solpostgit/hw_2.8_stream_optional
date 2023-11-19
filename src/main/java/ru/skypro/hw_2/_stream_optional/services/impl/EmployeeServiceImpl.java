@@ -1,5 +1,6 @@
 package ru.skypro.hw_2._stream_optional.services.impl;
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.stereotype.Service;
 import ru.skypro.hw_2._stream_optional.Employee;
 import ru.skypro.hw_2._stream_optional.exception.EmployeeAlreadyAddedException;
@@ -13,8 +14,21 @@ import java.util.Map;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
-    private final int STORAGE_SIZE = 5;
+    private final int STORAGE_SIZE = 100;
+    @PostConstruct
+    public void initEmployees() {
+        add("Ivan", "Petrov", 100_000, 1);
+        add("Ivan1", "Petrov", 200_000, 1);
+        add("Ivan2", "Petrov", 300_000, 1);
+
+        add("Ivan3", "Petrov", 300_000, 2);
+        add("Ivan4", "Petrov", 500_000, 2);
+
+        add("Ivan5", "Petrov", 1_000_000, 3);
+    }
     private final Map<String, Employee> employees = new HashMap<>();
+
+
     @Override
     public Employee add(String firstName, String lastName, Integer salary, Integer department) {
         if (employees.size() >= STORAGE_SIZE) {
